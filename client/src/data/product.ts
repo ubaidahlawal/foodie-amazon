@@ -1,0 +1,100 @@
+import almondDelight from '../assets/images/product-almond-delight.png'
+import berryBlissBites from '../assets/images/product-berry-bliss-bites.png'
+import coconutCrunchies from '../assets/images/product-coconut-crunchies.png'
+import snackPlatter from '../assets/images/bulk-snack-platter.png'
+import type { Product } from '../types/product'
+
+export const products: Product[] = [
+  {
+    id: 'organic-snack-platter',
+    name: 'Organic Snack Platter',
+    category: 'Snack Boxes',
+    price: 199,
+    originalPrice: 399,
+    rating: 5,
+    reviewCount: 102,
+    image: snackPlatter,
+    inStock: false,
+    isOffer: true,
+  },
+  {
+    id: 'organic-almond-delight',
+    name: 'Organic Almond Delight',
+    category: 'Crispy Chips',
+    price: 110,
+    originalPrice: 220,
+    rating: 5,
+    reviewCount: 18,
+    image: almondDelight,
+    inStock: true,
+    isPopular: true,
+    isOffer: true,
+  },
+  {
+    id: 'berry-bliss-bites',
+    name: 'Berry Bliss Bites',
+    category: 'Cookies',
+    price: 139,
+    originalPrice: 278,
+    rating: 5,
+    reviewCount: 28,
+    image: berryBlissBites,
+    inStock: true,
+    isPopular: true,
+    isOffer: true,
+  },
+  {
+    id: 'coconut-crunchies',
+    name: 'Coconut Crunchies',
+    category: 'Coconut Flakes',
+    price: 399,
+    originalPrice: 499,
+    rating: 5,
+    reviewCount: 102,
+    image: coconutCrunchies,
+    inStock: true,
+    isPopular: true,
+    isNew: true,
+    isOffer: true,
+  },
+  {
+    id: 'seed-power-bars',
+    name: 'Seed Power Bars',
+    category: 'Energy Bars',
+    price: 60,
+    rating: 4.8,
+    reviewCount: 24,
+    image: almondDelight,
+    inStock: true,
+    isPopular: true,
+    isNew: true,
+  },
+  {
+    id: 'coconut-date-energy-bars',
+    name: 'Coconut Date Energy Bars',
+    category: 'Energy Bars',
+    price: 85,
+    rating: 4.9,
+    reviewCount: 41,
+    image: berryBlissBites,
+    inStock: true,
+    isPopular: true,
+    isNew: true,
+  },
+  {
+    id: 'choco-chia-delight',
+    name: 'Choco-Chia Delight',
+    category: 'Cookies',
+    price: 60,
+    rating: 5,
+    reviewCount: 12,
+    image: coconutCrunchies,
+    inStock: true,
+    isPopular: true,
+    isNew: true,
+  },
+]
+
+export const popularProducts = products.filter((product) => product.isPopular)
+export const newProducts = products.filter((product) => product.isNew)
+export const offerProducts = products.filter((product) => product.isOffer)

@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Send } from 'lucide-react'
@@ -11,7 +10,6 @@ function Newsletter() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    // Placeholder until the newsletter API exists
     setIsSubscribed(true)
     setEmail('')
   }

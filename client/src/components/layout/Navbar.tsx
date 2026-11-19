@@ -1,12 +1,9 @@
-
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Heart, Menu, Search, ShoppingBag, X } from 'lucide-react'
 import logo from '../../assets/images/Foodie-logo.png'
 import { navLinks } from '../../data/navigation'
-
-// Temporary value until the real cart state is built
-const CART_COUNT = 2
+import { useCart } from '../../hooks/useCart'
 
 const iconButtonClass =
   'rounded-full p-2 text-ink transition-colors hover:bg-mint hover:text-primary'
@@ -23,7 +20,7 @@ const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  const { itemCount, openCart } = useCart()
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
@@ -64,18 +61,19 @@ function Navbar() {
             <Heart size={20} />
           </Link>
 
-          <Link
-            to="/cart"
-            aria-label={`Cart, ${CART_COUNT} items`}
+          <button
+            type="button"
+            onClick={openCart}
+            aria-label={`Open cart, ${itemCount} items`}
             className={`${iconButtonClass} relative`}
           >
             <ShoppingBag size={20} />
-            {CART_COUNT > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white">
-                {CART_COUNT}
+            {itemCount > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-bold text-white">
+                {itemCount > 99 ? '99+' : itemCount}
               </span>
             )}
-          </Link>
+          </button>
 
           <Link
             to="/contact"

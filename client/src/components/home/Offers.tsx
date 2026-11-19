@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 import blackFridayBanner from '../../assets/images/black-friday-banner.png'
 import ProductCard from '../product/ProductCard'

@@ -1,4 +1,3 @@
-
 import aboutSnacks from '../../assets/images/about-snacks.png'
 import signature from '../../assets/images/signature.png'
 

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Heart, Star } from 'lucide-react'
+import { useCart } from '../../hooks/useCart'
 import type { Product } from '../../types/product'
 import { formatPrice } from '../../utils/formatPrice'
 
@@ -19,6 +20,7 @@ function ProductCard({ product }: ProductCardProps) {
     image,
     inStock,
   } = product
+  const { addItem } = useCart()
   const productPath = `/products/${id}`
 
   return (
@@ -82,6 +84,7 @@ function ProductCard({ product }: ProductCardProps) {
       <button
         type="button"
         disabled={!inStock}
+        onClick={() => addItem(id)}
         className="mt-4 w-full rounded-md border border-primary py-3 text-sm font-semibold text-primary transition-colors enabled:hover:bg-primary enabled:hover:text-white disabled:cursor-not-allowed disabled:border-neutral-300 disabled:text-neutral-400"
       >
         Add to Cart

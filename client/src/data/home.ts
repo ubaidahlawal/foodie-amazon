@@ -1,4 +1,3 @@
-
 import { Bike, Store, UtensilsCrossed } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 

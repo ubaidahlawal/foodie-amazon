@@ -7,15 +7,28 @@ interface CartItemRowProps {
   item: CartItem
   onQuantityChange: (productId: string, quantity: number) => void
   onRemove: (productId: string) => void
+  onSaveForLater: (productId: string) => void
 }
 
-function CartItemRow({ item, onQuantityChange, onRemove }: CartItemRowProps) {
+const textActionClass = 'underline transition-colors hover:text-accent'
+
+function CartItemRow({
+  item,
+  onQuantityChange,
+  onRemove,
+  onSaveForLater,
+}: CartItemRowProps) {
   const { product, quantity } = item
   const productPath = `/products/${product.id}`
 
   return (
     <li className="flex gap-4 border-b border-neutral-200 py-6 first:pt-0 sm:gap-6">
-      <Link to={productPath} className="shrink-0" tabIndex={-1} aria-hidden="true">
+      <Link
+        to={productPath}
+        className="shrink-0"
+        tabIndex={-1}
+        aria-hidden="true"
+      >
         <img
           src={product.image}
           alt=""
@@ -36,13 +49,22 @@ function CartItemRow({ item, onQuantityChange, onRemove }: CartItemRowProps) {
           <p className="mt-1 text-xs text-ink/60">{product.category}</p>
           <p className="mt-2 text-sm">{formatPrice(product.price)} each</p>
 
-          <button
-            type="button"
-            onClick={() => onRemove(product.id)}
-            className="mt-3 text-xs text-ink/60 underline transition-colors hover:text-accent"
-          >
-            Remove
-          </button>
+          <div className="mt-3 flex gap-4 text-xs text-ink/60">
+            <button
+              type="button"
+              onClick={() => onSaveForLater(product.id)}
+              className={textActionClass}
+            >
+              Save for later
+            </button>
+            <button
+              type="button"
+              onClick={() => onRemove(product.id)}
+              className={textActionClass}
+            >
+              Remove
+            </button>
+          </div>
         </div>
 
         <div className="flex items-center justify-between gap-6 sm:flex-col sm:items-end">

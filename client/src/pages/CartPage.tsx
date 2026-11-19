@@ -5,10 +5,12 @@ import OrderSummary from '../components/cart/OrderSummary'
 import ProductSection from '../components/product/ProductSection'
 import { popularProducts } from '../data/product'
 import { useCart } from '../hooks/useCart'
+import { useWishlist } from '../hooks/useWishlist'
 import { calculateCartTotals } from '../utils/cartPricing'
 
 function CartPage() {
   const { items, itemCount, removeItem, setQuantity } = useCart()
+  const { add: addToWishlist } = useWishlist()
 
   const totals = useMemo(() => calculateCartTotals(items), [items])
 
@@ -16,6 +18,11 @@ function CartPage() {
     const idsInCart = new Set(items.map(({ product }) => product.id))
     return popularProducts.filter((product) => !idsInCart.has(product.id))
   }, [items])
+
+  const handleSaveForLater = (productId: string) => {
+    addToWishlist(productId)
+    removeItem(productId)
+  }
 
   return (
     <>
@@ -49,6 +56,7 @@ function CartPage() {
                     item={item}
                     onQuantityChange={setQuantity}
                     onRemove={removeItem}
+                    onSaveForLater={handleSaveForLater}
                   />
                 ))}
               </ul>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Heart, Star } from 'lucide-react'
 import { useCart } from '../../hooks/useCart'
+import { useWishlist } from '../../hooks/useWishlist'
 import type { Product } from '../../types/product'
 import { formatPrice } from '../../utils/formatPrice'
 
@@ -21,6 +22,8 @@ function ProductCard({ product }: ProductCardProps) {
     inStock,
   } = product
   const { addItem } = useCart()
+  const { has, toggle } = useWishlist()
+  const isWishlisted = has(id)
   const productPath = `/products/${id}`
 
   return (
@@ -51,10 +54,19 @@ function ProductCard({ product }: ProductCardProps) {
         <p className="text-xs text-ink/60">{category}</p>
         <button
           type="button"
-          aria-label={`Add ${name} to wishlist`}
+          aria-pressed={isWishlisted}
+          aria-label={
+            isWishlisted
+              ? `Remove ${name} from wishlist`
+              : `Add ${name} to wishlist`
+          }
+          onClick={() => toggle(id)}
           className="text-ink transition-colors hover:text-accent"
         >
-          <Heart size={18} />
+          <Heart
+            size={18}
+            className={isWishlisted ? 'fill-accent text-accent' : ''}
+          />
         </button>
       </div>
 

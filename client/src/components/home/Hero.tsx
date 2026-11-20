@@ -56,7 +56,7 @@ function Hero() {
           <img
             src={heroImage}
             alt="A plate of organic snacks with nuts, cookies and chocolate"
-            className="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full object-cover"
+            className="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-full object-cover loading-lazy"
           />
 
           <img

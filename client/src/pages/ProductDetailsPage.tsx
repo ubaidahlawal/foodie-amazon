@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import ProductGallery from '../components/product/ProductGallery'
 import ProductInfo from '../components/product/ProductInfo'
 import ProductSection from '../components/product/ProductSection'
+import ProductReviews from '../components/reviews/ProductReviews'
+import { useProductReviews } from '../hooks/useProductReviews'
 import {
   getProductById,
   getProductDetails,
@@ -17,6 +19,7 @@ interface ProductDetailsContentProps {
 function ProductDetailsContent({ product }: ProductDetailsContentProps) {
   const details = useMemo(() => getProductDetails(product), [product])
   const similarProducts = useMemo(() => getSimilarProducts(product), [product])
+  const { reviews, stats, submitReview } = useProductReviews(product.id)
 
   return (
     <>
@@ -27,6 +30,8 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
             product={product}
             summary={details.summary}
             varieties={details.varieties}
+            rating={stats.average}
+            reviewCount={stats.count}
           />
         </div>
 
@@ -45,6 +50,12 @@ function ProductDetailsContent({ product }: ProductDetailsContentProps) {
           </p>
         </div>
       </section>
+
+      <ProductReviews
+        reviews={reviews}
+        stats={stats}
+        onSubmitReview={submitReview}
+      />
 
       <ProductSection
         title="Similar Products"

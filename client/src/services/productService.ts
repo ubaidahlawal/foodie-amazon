@@ -2,8 +2,16 @@ import { productDetails } from '../data/productDetails'
 import { products } from '../data/product'
 import type { Product, ProductDetails } from '../types/product'
 
+export function getProducts(): Product[] {
+  return products
+}
+
 export function getProductById(id: string): Product | undefined {
   return products.find((product) => product.id === id)
+}
+
+export function getCategories(): string[] {
+  return [...new Set(products.map((product) => product.category))].sort()
 }
 
 export function getProductDetails(product: Product): ProductDetails {

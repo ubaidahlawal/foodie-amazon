@@ -1,3 +1,4 @@
+
 export interface FooterLink {
     label: string
     to: string
@@ -13,16 +14,16 @@ export interface FooterLink {
       title: 'Customer Service',
       links: [
         { label: 'Order Lookup', to: '/order-lookup' },
-        { label: 'Bulk Order', to: '/bulk-order' },
+        { label: 'Bulk Order', to: '/contact?topic=bulk' },
         { label: 'Shipping & Delivery', to: '/shipping-delivery' },
-        { label: 'Discounts', to: '/discounts' },
+        { label: 'Discounts', to: '/products?filter=offers' },
       ],
     },
     {
       title: 'About Us',
       links: [
         { label: 'News & Blog', to: '/blog' },
-        { label: 'Suppliers', to: '/suppliers' },
+        { label: 'Suppliers', to: '/contact?topic=supplier' },
         { label: 'Terms & Conditions', to: '/terms' },
         { label: 'Privacy Policy', to: '/privacy' },
       ],

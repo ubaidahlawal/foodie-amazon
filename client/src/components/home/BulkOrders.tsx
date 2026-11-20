@@ -40,7 +40,7 @@ function BulkOrders() {
                 {description}
               </p>
               <Link
-                to={`/bulk-order?category=${id}`}
+                to={`/contact?topic=bulk&product=${encodeURIComponent(name)}`}
                 className="mx-auto mb-2 mt-5 inline-flex items-center gap-1 rounded-md border border-primary px-5 py-2 text-xs font-bold uppercase tracking-wide text-primary transition-colors hover:bg-primary hover:text-white"
               >
                 Order Now
@@ -60,7 +60,7 @@ function BulkOrders() {
               <h3 className="text-lg font-bold">Others</h3>
               <p className="mt-1 text-sm">Milk, Tools, Spice, etc.</p>
               <Link
-                to="/bulk-order?category=others"
+                to="/contact?topic=bulk"
                 className="mt-6 inline-flex items-center gap-1 rounded-md border border-white px-5 py-2 text-xs font-bold transition-colors hover:bg-white hover:text-primary"
               >
                 See Others

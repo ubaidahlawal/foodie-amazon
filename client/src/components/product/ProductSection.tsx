@@ -6,6 +6,7 @@ interface ProductSectionProps {
   title: string
   description: string
   products: Product[]
+  browseTo?: string
   className?: string
 }
 
@@ -13,6 +14,7 @@ function ProductSection({
   title,
   description,
   products,
+  browseTo = '/products',
   className = '',
 }: ProductSectionProps) {
   return (
@@ -22,7 +24,7 @@ function ProductSection({
           title={title}
           description={description}
           actionLabel="Browse All"
-          actionTo="/products"
+          actionTo={browseTo}
         />
 
         <div className="mt-10">

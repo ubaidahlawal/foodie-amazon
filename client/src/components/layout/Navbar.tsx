@@ -48,9 +48,14 @@ function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <button type="button" aria-label="Search" className={iconButtonClass}>
-            <Search size={20} />
-          </button>
+            <Link
+            to="/products"
+            aria-label="Search products"
+            className={iconButtonClass}
+            >
+                <Search size={20} />
+             
+            </Link>
 
           <span
             className="hidden h-6 w-px bg-neutral-200 sm:block"

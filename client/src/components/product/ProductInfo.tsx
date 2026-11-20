@@ -10,19 +10,18 @@ interface ProductInfoProps {
   product: Product
   summary: string
   varieties: string[]
+  rating: number
+  reviewCount: number
 }
 
-function ProductInfo({ product, summary, varieties }: ProductInfoProps) {
-  const {
-    id,
-    name,
-    category,
-    price,
-    originalPrice,
-    rating,
-    reviewCount,
-    inStock,
-  } = product
+function ProductInfo({
+  product,
+  summary,
+  varieties,
+  rating,
+  reviewCount,
+}: ProductInfoProps) {
+  const { id, name, category, price, originalPrice, inStock } = product
   const { addItem, closeCart } = useCart()
   const navigate = useNavigate()
   const [quantity, setQuantity] = useState(1)
@@ -31,6 +30,7 @@ function ProductInfo({ product, summary, varieties }: ProductInfoProps) {
 
   const handleCheckout = () => {
     addItem(id, quantity)
+    // Batched with the update inside addItem, so the cart pop-up never opens
     closeCart()
     navigate('/checkout')
   }
@@ -49,11 +49,19 @@ function ProductInfo({ product, summary, varieties }: ProductInfoProps) {
         </span>
       </p>
 
-      <p className="mt-3 flex items-center gap-1 text-sm">
-        <Star size={16} className="fill-accent text-accent" aria-hidden="true" />
-        {rating.toFixed(1)}
-        <span className="text-ink/60">({reviewCount})</span>
-      </p>
+      {reviewCount > 0 ? (
+        <p className="mt-3 flex items-center gap-1 text-sm">
+          <Star
+            size={16}
+            className="fill-accent text-accent"
+            aria-hidden="true"
+          />
+          {rating.toFixed(1)}
+          <span className="text-ink/60">({reviewCount})</span>
+        </p>
+      ) : (
+        <p className="mt-3 text-sm text-ink/60">No reviews yet</p>
+      )}
 
       {varieties.length > 0 && (
         <div className="mt-6 flex gap-4 text-sm">

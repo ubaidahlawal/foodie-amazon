@@ -7,6 +7,7 @@ function PopularProducts() {
       title="Our Popular Products"
       description="Browse our most popular snacks and make your day more beautiful and glorious."
       products={popularProducts}
+      browseTo="/products?filter=popular"
       className="relative -mt-10 rounded-t-[3rem]"
     />
   )

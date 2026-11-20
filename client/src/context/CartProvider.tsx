@@ -44,7 +44,6 @@ function CartProvider({ children }: CartProviderProps) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(lines))
     } catch {
-      // Storage can be unavailable (private mode, quota). The cart still works.
     }
   }, [lines])
 

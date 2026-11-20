@@ -12,3 +12,12 @@ export interface Product {
     isNew?: boolean
     isOffer?: boolean
   }
+
+  export interface ProductDetails {
+    summary: string
+    about: string
+    varieties: string[]
+    highlights: string[]
+    benefits: string
+    gallery: string[]
+  }

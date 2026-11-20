@@ -19,7 +19,6 @@ function CartPopup() {
     if (!isOpen && dialog.open) dialog.close()
   }, [isOpen])
 
-  // Clicking the dimmed backdrop targets the <dialog> itself
   const handleBackdropClick = (event: MouseEvent<HTMLDialogElement>) => {
     if (event.target === event.currentTarget) closeCart()
   }

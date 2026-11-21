@@ -1,4 +1,3 @@
-
 import { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { parseCollection, parseSort } from '../utils/productFilters'
@@ -28,7 +27,6 @@ export function useProductFilters() {
     [setSearchParams],
   )
 
-  // Default values are removed from the URL to keep links short and clean
   return {
     collection,
     category,

@@ -9,6 +9,7 @@ interface CreateOrderInput {
   shipping: ShippingDetails
   paymentMethod: PaymentMethod
 }
+
 function readOrders(): Order[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
@@ -58,4 +59,15 @@ export async function createOrder({
 
 export function getOrderById(id: string): Order | undefined {
   return readOrders().find((order) => order.id === id)
+}
+
+export function findOrder(orderId: string, email: string): Order | undefined {
+  const id = orderId.trim().toUpperCase()
+  const emailAddress = email.trim().toLowerCase()
+
+  return readOrders().find(
+    (order) =>
+      order.id === id &&
+      order.shipping.email.trim().toLowerCase() === emailAddress,
+  )
 }

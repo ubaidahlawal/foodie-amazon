@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { privacyPolicy, shippingPolicy, termsPolicy } from './data/policies'
 import MainLayout from './layouts/MainLayout'
 import BlogPage from './pages/BlogPage'
 import BlogPostPage from './pages/BlogPostPage'
@@ -10,6 +11,8 @@ import HealthBenefitsPage from './pages/HealthBenefitsPage'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import OrderConfirmationPage from './pages/OrderConfirmationPage'
+import OrderLookupPage from './pages/OrderLookupPage'
+import PolicyPage from './pages/PolicyPage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 import ProductsPage from './pages/ProductsPage'
 import WishlistPage from './pages/WishlistPage'
@@ -33,6 +36,13 @@ function App() {
           path="/order-confirmation/:orderId"
           element={<OrderConfirmationPage />}
         />
+        <Route path="/order-lookup" element={<OrderLookupPage />} />
+        <Route
+          path="/shipping-delivery"
+          element={<PolicyPage policy={shippingPolicy} />}
+        />
+        <Route path="/terms" element={<PolicyPage policy={termsPolicy} />} />
+        <Route path="/privacy" element={<PolicyPage policy={privacyPolicy} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

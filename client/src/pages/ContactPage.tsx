@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSearchParams } from 'react-router-dom'
@@ -10,8 +9,7 @@ import { siteConfig } from '../config/site'
 import { contactTopics, parseContactTopic } from '../data/contactTopics'
 import type { ContactTopic } from '../data/contactTopics'
 import { sendContactMessage } from '../services/contactService'
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+import { EMAIL_PATTERN } from '../utils/validation'
 
 const contactDetails = [
   {

@@ -11,9 +11,8 @@ import { useCart } from '../hooks/useCart'
 import { createOrder } from '../services/orderService'
 import type { CheckoutFormValues, PaymentMethod } from '../types/order'
 import { calculateCartTotals } from '../utils/cartPricing'
+import { EMAIL_PATTERN, PHONE_PATTERN } from '../utils/validation'
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PHONE_PATTERN = /^\+?[0-9\s-]{7,15}$/
 
 interface PaymentOption {
   value: PaymentMethod

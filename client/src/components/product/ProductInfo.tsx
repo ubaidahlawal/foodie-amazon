@@ -30,7 +30,6 @@ function ProductInfo({
 
   const handleCheckout = () => {
     addItem(id, quantity)
-    // Batched with the update inside addItem, so the cart pop-up never opens
     closeCart()
     navigate('/checkout')
   }

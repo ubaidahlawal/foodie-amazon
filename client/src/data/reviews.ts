@@ -1,9 +1,7 @@
-
 import type { Review } from '../types/review'
 
 export type SeedReview = Omit<Review, 'productId'>
 
-// Demo reviews, shown on every product until the backend exists
 export const seedReviews: SeedReview[] = [
   {
     id: 'seed-1',

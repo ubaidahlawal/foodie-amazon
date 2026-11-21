@@ -1,4 +1,3 @@
-
 import type { Product } from '../types/product'
 
 export type ProductCollection = 'all' | 'popular' | 'new' | 'offers'

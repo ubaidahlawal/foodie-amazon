@@ -1,10 +1,8 @@
-
 import { seedReviews } from '../data/reviews'
 import type { NewReview, Review } from '../types/review'
 
 const STORAGE_KEY = 'foodie-amazon:reviews'
 
-// Demo storage. This whole file is replaced by API calls when the backend exists.
 function readStoredReviews(): Review[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)

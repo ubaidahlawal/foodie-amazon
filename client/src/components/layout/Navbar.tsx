@@ -1,8 +1,17 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Heart, Menu, Search, ShoppingBag, X } from 'lucide-react'
+import {
+  Heart,
+  LogOut,
+  Menu,
+  Search,
+  ShoppingBag,
+  User,
+  X,
+} from 'lucide-react'
 import logo from '../../assets/images/Foodie-logo.png'
 import { navLinks } from '../../data/navigation'
+import { useAuth } from '../../hooks/useAuth'
 import { useCart } from '../../hooks/useCart'
 
 const iconButtonClass =
@@ -21,7 +30,10 @@ const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { itemCount, openCart } = useCart()
+  const { user, signOut } = useAuth()
+
   const closeMenu = () => setIsMenuOpen(false)
+  const firstName = user?.name.split(' ')[0]
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -48,14 +60,13 @@ function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2 sm:gap-4">
-            <Link
+          <Link
             to="/products"
             aria-label="Search products"
             className={iconButtonClass}
-            >
-                <Search size={20} />
-             
-            </Link>
+          >
+            <Search size={20} />
+          </Link>
 
           <span
             className="hidden h-6 w-px bg-neutral-200 sm:block"
@@ -80,9 +91,30 @@ function Navbar() {
             )}
           </button>
 
+          {user ? (
+            <>
+              <span className="hidden text-sm font-medium xl:inline">
+                Hi, {firstName}
+              </span>
+              <button
+                type="button"
+                onClick={signOut}
+                aria-label={`Sign out ${user.name}`}
+                title="Sign out"
+                className={iconButtonClass}
+              >
+                <LogOut size={20} />
+              </button>
+            </>
+          ) : (
+            <Link to="/login" aria-label="Log in" className={iconButtonClass}>
+              <User size={20} />
+            </Link>
+          )}
+
           <Link
             to="/contact"
-            className="hidden rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:inline-block"
+            className="ml-2 hidden rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:inline-block"
           >
             Contact Us
           </Link>
@@ -118,6 +150,30 @@ function Navbar() {
                 </NavLink>
               </li>
             ))}
+
+            <li>
+              {user ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    signOut()
+                    closeMenu()
+                  }}
+                  className={`${mobileLinkClass({ isActive: false })} w-full text-left`}
+                >
+                  Sign out
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={closeMenu}
+                  className={mobileLinkClass({ isActive: false })}
+                >
+                  Log in
+                </Link>
+              )}
+            </li>
+
             <li>
               <Link
                 to="/contact"

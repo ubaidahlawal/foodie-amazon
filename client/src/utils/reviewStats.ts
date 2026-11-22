@@ -1,4 +1,3 @@
-
 import type { Review, ReviewStats, StarValue } from '../types/review'
 
 export function calculateReviewStats(reviews: Review[]): ReviewStats {

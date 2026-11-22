@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import RequireAuth from './components/auth/RequireAuth'
 import { privacyPolicy, shippingPolicy, termsPolicy } from './data/policies'
 import MainLayout from './layouts/MainLayout'
 import BlogPage from './pages/BlogPage'
@@ -7,19 +8,26 @@ import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
 import ContactPage from './pages/ContactPage'
 import FaqPage from './pages/FaqPage'
+import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import HealthBenefitsPage from './pages/HealthBenefitsPage'
 import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 import NotFoundPage from './pages/NotFoundPage'
 import OrderConfirmationPage from './pages/OrderConfirmationPage'
 import OrderLookupPage from './pages/OrderLookupPage'
 import PolicyPage from './pages/PolicyPage'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 import ProductsPage from './pages/ProductsPage'
+import SignUpPage from './pages/SignUpPage'
 import WishlistPage from './pages/WishlistPage'
 
 function App() {
   return (
     <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
@@ -31,7 +39,14 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route
+          path="/checkout"
+          element={
+            <RequireAuth>
+              <CheckoutPage />
+            </RequireAuth>
+          }
+        />
         <Route
           path="/order-confirmation/:orderId"
           element={<OrderConfirmationPage />}
